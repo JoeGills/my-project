@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 import * as THREE from "three";
+import "./Challenge.css";
 
 const Challenge = ({ onComplete }) => {
   const canvasRef = useRef();

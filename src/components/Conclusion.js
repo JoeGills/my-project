@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import * as THREE from "three";
+import "./Conclusion.css";
 
 const Conclusion = () => {
   const canvasRef = useRef();
