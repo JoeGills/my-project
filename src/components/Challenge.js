@@ -43,8 +43,10 @@ const Challenge = ({ onComplete }) => {
 
     // Clean up any event listeners or resources
     return () => {
+      // Store the audioRef.current in a variable
+      const audio = audioRef.current;
       //Stop audio playback
-      audioRef.current.pause();
+      audio.pause();
     };
   }, []);
 
