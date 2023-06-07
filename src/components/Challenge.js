@@ -67,7 +67,7 @@ const Challenge = ({ onComplete }) => {
   return (
     <animated.div style={springProps}>
       <canvas ref={canvasRef} {...bind()} />
-      <audio ref={audioRef} src="my-audio-file.mp3.mp3" autoPlay loop />
+      <audio ref={audioRef} src="/my-audio-file.mp3.mp3" autoPlay loop />
     </animated.div>
   );
 };
