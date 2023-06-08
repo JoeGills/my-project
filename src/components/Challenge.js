@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useSpring, animated } from "react-spring";
 import { useDrag } from "react-use-gesture";
 import * as THREE from "three";
@@ -7,6 +7,7 @@ import "./Challenge.css";
 const Challenge = ({ onComplete }) => {
   const canvasRef = useRef();
   const audioRef = useRef();
+  const [muted, setMuted] = useState(false); // State to track muted state
 
   useEffect(() => {
     // Setup canvas and audio logic
@@ -41,14 +42,18 @@ const Challenge = ({ onComplete }) => {
 
     animate();
 
+    // Play audio on component mount
+    audioRef.current = new Audio("/my-audio-file.mp3");
+    audioRef.current.loop = true;
+    audioRef.current.muted = muted; // Set initial muted state
+    audioRef.current.play();
+
     // Clean up any event listeners or resources
     return () => {
-      // Store the audioRef.current in a variable
-      const audio = audioRef.current;
       //Stop audio playback
-      audio.pause();
+      audioRef.current?.pause();
     };
-  }, []);
+  }, [muted]);
 
   const bind = useDrag(({ down }) => {
     // Handle user input and interactions
@@ -66,10 +71,21 @@ const Challenge = ({ onComplete }) => {
     config: { duration: 500 },
   });
 
+  const toggleMuted = () => {
+    setMuted((prevMuted) => !prevMuted); // Toggle the muted state
+  };
+
   return (
-    <animated.div style={springProps}>
+    <animated.div className="container" style={springProps}>
+      <div className="blinking-line"></div>
+      <div className="blinking-line"></div>
+      <div className="blinking-line"></div>
+      <div className="blinking-line"></div>
       <canvas ref={canvasRef} {...bind()} />
-      <audio ref={audioRef} src="/my-audio-file.mp3.mp3" autoPlay loop />
+      <button onClick={toggleMuted}>
+        {muted ? "Unmute Audio" : "Mute Audio"}
+      </button>
+      <audio ref={audioRef} src="/my-audio-file.mp3" />
     </animated.div>
   );
 };
