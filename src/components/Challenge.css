@@ -25,4 +25,57 @@
   .audio-controls button {
     margin: 0 0.5rem;
   }
+  @keyframes disco-border {
+    0% {
+      transform: scale(1);
+      opacity: 0;
+    }
+    25% {
+      transform: scale(0.8);
+      opacity: 1;
+    }
+    75% {
+      transform: scale(0.8);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+  
+  .container {
+    position: relative;
+  }
+  
+  .blinking-line {
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid transparent;
+    animation: disco-border 2s infinite;
+    pointer-events: none;
+  }
+  
+  .blinking-line:nth-child(1) {
+    animation-delay: 0s;
+    border-color: #ff0000;
+  }
+  
+  .blinking-line:nth-child(2) {
+    animation-delay: 0.5s;
+    border-color: #00ff00;
+  }
+  
+  .blinking-line:nth-child(3) {
+    animation-delay: 1s;
+    border-color: #0000ff;
+  }
+  
+  .blinking-line:nth-child(4) {
+    animation-delay: 1.5s;
+    border-color: #ffff00;
+  }
   
